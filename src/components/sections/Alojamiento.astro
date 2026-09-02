@@ -24,24 +24,24 @@ const opciones = [
   <div class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-12 lg:gap-10">
     <div class="lg:col-span-6 lg:order-1">
       <div class="grid grid-cols-5 gap-4" data-reveal>
-        <div class="col-span-3">
+        <div class="group col-span-3 overflow-hidden rounded-3xl">
           <Image
             src={exteriorDomoAzul}
             alt="Exterior de domo azul con terraza y sillas"
             loading="lazy"
             widths={[400, 640, 900]}
             sizes="(min-width: 1024px) 32vw, 60vw"
-            class="aspect-[3/4] w-full rounded-3xl object-cover"
+            class="aspect-[3/4] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
           />
         </div>
-        <div class="col-span-2 self-end">
+        <div class="group col-span-2 self-end overflow-hidden rounded-3xl">
           <Image
             src={domoRojo}
             alt="Domo rojo con terraza para una velada romántica"
             loading="lazy"
             widths={[300, 480]}
             sizes="(min-width: 1024px) 18vw, 40vw"
-            class="aspect-[3/4] w-full rounded-3xl object-cover"
+            class="aspect-[3/4] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
           />
         </div>
       </div>

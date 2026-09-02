@@ -10,14 +10,14 @@ const categorias = ['Cumpleaños', 'Aniversarios', 'Sorpresas románticas'];
 
 <section id="celebraciones" class="bg-sand-300/40 px-5 py-20 sm:px-8 lg:px-16 lg:py-28">
   <div class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-12 lg:gap-10">
-    <div class="lg:col-span-6 lg:order-2" data-reveal>
+    <div class="group overflow-hidden rounded-3xl lg:col-span-6 lg:order-2" data-reveal>
       <Image
         src={habitacionCorazon}
         alt="Habitación decorada con globos y un corazón sobre la cama para una sorpresa romántica"
         loading="lazy"
         widths={[480, 828, 1200]}
         sizes="(min-width: 1024px) 42vw, 90vw"
-        class="aspect-[4/5] w-full rounded-3xl object-cover"
+        class="aspect-[4/5] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
       />
     </div>
 
@@ -30,7 +30,8 @@ const categorias = ['Cumpleaños', 'Aniversarios', 'Sorpresas románticas'];
       </h2>
       <p class="mt-4 font-sans text-base leading-relaxed text-ink-700 sm:text-lg">
         Cumpleaños, aniversarios o esa sorpresa que llevas tiempo planeando: cuéntanos qué estás
-        celebrando y preparamos la decoración con anticipación.
+        celebrando y preparamos la decoración con anticipación. Hay distintas opciones de
+        decoración según tu presupuesto.
       </p>
 
       <ul class="mt-6 flex flex-wrap gap-2">
@@ -42,22 +43,26 @@ const categorias = ['Cumpleaños', 'Aniversarios', 'Sorpresas románticas'];
       </ul>
 
       <div class="mt-6 grid grid-cols-2 gap-3">
-        <Image
-          src={decoracionCumpleanos}
-          alt="Decoración de cumpleaños con globos sobre la cama"
-          loading="lazy"
-          widths={[300, 480]}
-          sizes="(min-width: 1024px) 20vw, 45vw"
-          class="aspect-[4/3] w-full rounded-xl object-cover"
-        />
-        <Image
-          src={decoracionTeAmo}
-          alt="Decoración romántica con mensaje y globos sobre la cama"
-          loading="lazy"
-          widths={[300, 480]}
-          sizes="(min-width: 1024px) 20vw, 45vw"
-          class="aspect-[4/3] w-full rounded-xl object-cover"
-        />
+        <div class="group overflow-hidden rounded-xl">
+          <Image
+            src={decoracionCumpleanos}
+            alt="Decoración de cumpleaños con globos sobre la cama"
+            loading="lazy"
+            widths={[300, 480]}
+            sizes="(min-width: 1024px) 20vw, 45vw"
+            class="aspect-[4/3] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+          />
+        </div>
+        <div class="group overflow-hidden rounded-xl">
+          <Image
+            src={decoracionTeAmo}
+            alt="Decoración romántica con mensaje y globos sobre la cama"
+            loading="lazy"
+            widths={[300, 480]}
+            sizes="(min-width: 1024px) 20vw, 45vw"
+            class="aspect-[4/3] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+          />
+        </div>
       </div>
 
       <div class="mt-7">

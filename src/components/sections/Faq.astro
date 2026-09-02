@@ -1,13 +1,13 @@
 ---
+import { site } from '../../config/site';
 import WhatsappButton from '../WhatsappButton.astro';
 
 /**
  * `schema: true` marks a question with a genuine, confirmed answer — those
  * are the only ones emitted into the FAQPage JSON-LD below. Questions that
- * just redirect to WhatsApp because the fact isn't confirmed yet in
- * `site.ts` (parking, pets, check-in/out, payment methods) are answered
- * honestly here but kept out of the schema so search engines never surface
- * an "answer" that is really just "ask us."
+ * just redirect to WhatsApp because the fact isn't confirmed yet are
+ * answered honestly here but kept out of the schema so search engines never
+ * surface an "answer" that is really just "ask us."
  */
 const faqs = [
   {
@@ -37,8 +37,13 @@ const faqs = [
   {
     question: '¿Cómo funcionan las decoraciones?',
     answer:
-      'La decoración se coordina antes de tu llegada, según la ocasión que nos cuentes. Escríbenos por WhatsApp con los detalles de tu celebración y te contamos cómo funciona para tu fecha.',
-    schema: false,
+      'La decoración se coordina antes de tu llegada, según la ocasión que nos cuentes. Hay distintas opciones de precio dependiendo de lo que quieras — escríbenos por WhatsApp con los detalles de tu celebración y te contamos cómo funciona para tu fecha.',
+    schema: true,
+  },
+  {
+    question: '¿Tienen masajes?',
+    answer: 'Sí, los masajes son un servicio adicional. Escríbenos para conocer las opciones disponibles.',
+    schema: true,
   },
   {
     question: '¿La cabalgata está incluida?',
@@ -71,23 +76,23 @@ const faqs = [
   },
   {
     question: '¿Hay parqueadero?',
-    answer: 'Cuéntanos por WhatsApp y te confirmamos la disponibilidad de parqueadero para tu fecha.',
-    schema: false,
+    answer: 'Sí, contamos con parqueadero para nuestros huéspedes.',
+    schema: site.parking,
   },
   {
     question: '¿Aceptan mascotas?',
-    answer: 'Cuéntanos por WhatsApp y te confirmamos la política de mascotas antes de tu reserva.',
-    schema: false,
+    answer: 'Sí, las mascotas son bienvenidas.',
+    schema: site.petFriendly,
   },
   {
     question: '¿Cuál es el horario de llegada y salida?',
-    answer: 'Cuéntanos por WhatsApp y te confirmamos el horario de llegada y salida para tu fecha.',
-    schema: false,
+    answer: `El check-in es a las ${site.checkIn} y el check-out a las ${site.checkOut}.`,
+    schema: true,
   },
   {
     question: '¿Qué medios de pago aceptan?',
-    answer: 'Cuéntanos por WhatsApp y te contamos qué medios de pago tenemos disponibles.',
-    schema: false,
+    answer: `Aceptamos ${site.paymentMethods.map((m) => m.toLowerCase()).join(' y ')}.`,
+    schema: true,
   },
 ] as const;
 

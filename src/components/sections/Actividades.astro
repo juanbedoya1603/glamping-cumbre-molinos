@@ -25,14 +25,14 @@ const badge = 'Experiencia adicional · Sujeta a disponibilidad';
 
     <div class="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
       <!-- Cabalgata — ritmo tranquilo -->
-      <div class="relative overflow-hidden rounded-3xl" data-reveal data-reveal-delay="1">
+      <div class="group relative overflow-hidden rounded-3xl" data-reveal data-reveal-delay="1">
         <Image
           src={cabalgata}
           alt="Cabalgata saliendo por el portón del campo en Cumbre de los Molinos"
           loading="lazy"
           widths={[480, 828, 1200]}
           sizes="(min-width: 1024px) 46vw, 100vw"
-          class="aspect-[4/5] w-full object-cover sm:aspect-[3/4]"
+          class="aspect-[4/5] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 sm:aspect-[3/4]"
         />
         <div
           class="pointer-events-none absolute inset-0"
@@ -55,14 +55,14 @@ const badge = 'Experiencia adicional · Sujeta a disponibilidad';
       </div>
 
       <!-- Cuatrimotos — sube el ritmo -->
-      <div class="relative overflow-hidden rounded-3xl lg:mt-10" data-reveal data-reveal-delay="2">
+      <div class="group relative overflow-hidden rounded-3xl lg:mt-10" data-reveal data-reveal-delay="2">
         <Image
           src={cuatrimotos}
           alt="Recorrido en cuatrimoto por los alrededores del glamping"
           loading="lazy"
           widths={[480, 828, 1200]}
           sizes="(min-width: 1024px) 46vw, 100vw"
-          class="aspect-[4/5] w-full object-cover sm:aspect-[3/4]"
+          class="aspect-[4/5] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 sm:aspect-[3/4]"
         />
         <div
           class="pointer-events-none absolute inset-0"

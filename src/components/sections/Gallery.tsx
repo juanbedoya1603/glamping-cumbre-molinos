@@ -143,7 +143,7 @@ export default function Gallery({ images, mobileVisibleCount }: GalleryProps) {
               key={image.id}
               type="button"
               onClick={(event) => openLightbox(index, event.currentTarget)}
-              className={`group relative overflow-hidden rounded-xl bg-forest-900/10 ${SPAN_CLASSES[image.span]} ${
+              className={`group relative overflow-hidden rounded-xl bg-forest-900/10 transition-transform duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97] ${SPAN_CLASSES[image.span]} ${
                 isExtra && !revealed ? 'hidden md:block' : 'block'
               }`}
               aria-label={`Ampliar foto: ${image.alt}`}
@@ -174,7 +174,7 @@ export default function Gallery({ images, mobileVisibleCount }: GalleryProps) {
             type="button"
             onClick={() => setRevealed((value) => !value)}
             aria-expanded={revealed}
-            className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-forest-700/30 px-5 py-2.5 font-sans text-sm font-semibold text-forest-800 transition-colors hover:bg-forest-950/5"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-forest-700/30 px-5 py-2.5 font-sans text-sm font-semibold text-forest-800 transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-forest-950/5 active:scale-[0.97]"
           >
             {revealed ? 'Ver menos fotos' : 'Ver más fotos'}
           </button>
@@ -216,7 +216,7 @@ export default function Gallery({ images, mobileVisibleCount }: GalleryProps) {
                   ref={closeButtonRef}
                   type="button"
                   onClick={closeLightbox}
-                  className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-cream-50 transition-colors hover:bg-cream-50/10"
+                  className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-cream-50 transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-cream-50/10 active:scale-90"
                   aria-label="Cerrar galería"
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
@@ -233,9 +233,9 @@ export default function Gallery({ images, mobileVisibleCount }: GalleryProps) {
                     width={activeImage.fullWidth}
                     height={activeImage.fullHeight}
                     alt={activeImage.alt}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
+                    initial={{ opacity: 0, filter: 'blur(8px)' }}
+                    animate={{ opacity: 1, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, filter: 'blur(8px)' }}
                     transition={{ duration: motionTokens.duration.normal, ease: motionTokens.easing.smooth }}
                     className="mx-auto max-h-[65vh] w-auto object-contain"
                   />
@@ -246,7 +246,7 @@ export default function Gallery({ images, mobileVisibleCount }: GalleryProps) {
                     <button
                       type="button"
                       onClick={showPrev}
-                      className="absolute left-2 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-forest-950/60 text-cream-50 transition-colors hover:bg-forest-950/80"
+                      className="absolute left-2 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-forest-950/60 text-cream-50 transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-forest-950/80 active:scale-90"
                       aria-label="Foto anterior"
                     >
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
@@ -256,7 +256,7 @@ export default function Gallery({ images, mobileVisibleCount }: GalleryProps) {
                     <button
                       type="button"
                       onClick={showNext}
-                      className="absolute right-2 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-forest-950/60 text-cream-50 transition-colors hover:bg-forest-950/80"
+                      className="absolute right-2 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-forest-950/60 text-cream-50 transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-forest-950/80 active:scale-90"
                       aria-label="Foto siguiente"
                     >
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">

@@ -13,7 +13,7 @@ interface Props {
 const { section, label, variant = 'solid', size = 'lg', class: className = '' } = Astro.props;
 
 const base =
-  'group inline-flex items-center justify-center gap-2 rounded-full font-sans font-semibold tracking-tight transition-transform duration-150 ease-out active:scale-[0.97] cursor-pointer select-none';
+  'group inline-flex items-center justify-center gap-2 rounded-full font-sans font-semibold tracking-tight transition-[transform,background-color,border-color] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:scale-[1.015] active:scale-[0.97] cursor-pointer select-none';
 
 const variants = {
   solid: 'bg-gold-500 text-forest-950 hover:bg-gold-400',

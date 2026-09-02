@@ -8,14 +8,14 @@ import WhatsappButton from '../WhatsappButton.astro';
 
 <section id="romance" class="bg-cream-50 px-5 py-20 sm:px-8 lg:px-16 lg:py-28">
   <div class="mx-auto max-w-6xl">
-    <div class="relative overflow-hidden rounded-3xl" data-reveal>
+    <div class="group relative overflow-hidden rounded-3xl" data-reveal>
       <Image
         src={interiorDomoTransparente}
         alt="Interior de domo con vista hacia la terraza y el jacuzzi"
         loading="lazy"
         widths={[600, 1000, 1400]}
         sizes="100vw"
-        class="aspect-[4/5] w-full object-cover sm:aspect-[16/10]"
+        class="aspect-[4/5] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 sm:aspect-[16/10]"
       />
       <div
         class="pointer-events-none absolute inset-0"
@@ -32,34 +32,36 @@ import WhatsappButton from '../WhatsappButton.astro';
           </h2>
           <p class="mt-4 font-sans text-base leading-relaxed text-cream-100/90 sm:text-lg">
             Una tarde para ustedes dos: agua caliente, vista abierta y silencio. Consulta las
-            opciones con jacuzzi disponibles para tu fecha — te confirmamos cuál aplica.
+            opciones con jacuzzi disponibles para tu fecha — te confirmamos cuál aplica. También
+            puedes sumar un masaje como servicio adicional.
           </p>
-          <div class="mt-7">
+          <div class="mt-7 flex flex-wrap gap-3">
             <WhatsappButton section="jacuzzi" label="Consultar opciones con jacuzzi" />
+            <WhatsappButton section="massage" label="Preguntar por masajes" variant="outline" />
           </div>
         </div>
       </div>
     </div>
 
     <div class="mt-5 grid grid-cols-2 gap-4 sm:gap-5">
-      <div data-reveal data-reveal-delay="1">
+      <div class="group overflow-hidden rounded-2xl" data-reveal data-reveal-delay="1">
         <Image
           src={habitacionRomantica}
           alt="Habitación con decoración romántica junto al jacuzzi"
           loading="lazy"
           widths={[400, 640]}
           sizes="(min-width: 1024px) 26vw, 50vw"
-          class="aspect-[4/5] w-full rounded-2xl object-cover"
+          class="aspect-[4/5] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
       </div>
-      <div data-reveal data-reveal-delay="2">
+      <div class="group overflow-hidden rounded-2xl" data-reveal data-reveal-delay="2">
         <Image
           src={suitePresidencial}
           alt="Suite con jacuzzi y ambientación romántica"
           loading="lazy"
           widths={[400, 640]}
           sizes="(min-width: 1024px) 26vw, 50vw"
-          class="aspect-[4/5] w-full rounded-2xl object-cover"
+          class="aspect-[4/5] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
       </div>
     </div>

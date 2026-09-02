@@ -4,14 +4,14 @@ import atardecer from '../../assets/images/atardecer-domo-azul-piscina.jpg';
 import WhatsappButton from '../WhatsappButton.astro';
 ---
 
-<section id="cta-final" class="relative flex min-h-[560px] items-center overflow-hidden bg-forest-950 px-5 py-24 sm:px-8 lg:px-16">
+<section id="cta-final" class="group relative flex min-h-[560px] items-center overflow-hidden bg-forest-950 px-5 py-24 sm:px-8 lg:px-16">
   <Image
     src={atardecer}
     alt="Atardecer sobre el domo azul y la piscina de Cumbre de los Molinos"
     loading="lazy"
     widths={[600, 1000, 1600]}
     sizes="100vw"
-    class="absolute inset-0 h-full w-full object-cover"
+    class="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
   />
   <div
     class="pointer-events-none absolute inset-0"

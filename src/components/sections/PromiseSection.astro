@@ -22,36 +22,36 @@ import WhatsappButton from '../WhatsappButton.astro';
     </div>
 
     <div class="mt-10 grid grid-cols-1 gap-4 lg:grid-cols-12 lg:gap-5">
-      <div class="lg:col-span-7" data-reveal>
+      <div class="group overflow-hidden rounded-3xl lg:col-span-7" data-reveal>
         <Image
           src={atardecer}
           alt="Atardecer junto al domo azul y la piscina del glamping"
           loading="lazy"
           widths={[480, 828, 1200]}
           sizes="(min-width: 1024px) 58vw, 100vw"
-          class="h-full w-full rounded-3xl object-cover aspect-[4/3] lg:aspect-auto"
+          class="aspect-[4/3] h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 lg:aspect-auto"
         />
       </div>
 
       <div class="grid grid-cols-2 gap-4 lg:col-span-5 lg:grid-cols-1 lg:gap-5">
-        <div data-reveal data-reveal-delay="1">
+        <div class="group overflow-hidden rounded-3xl" data-reveal data-reveal-delay="1">
           <Image
             src={piscina}
             alt="Piscina al aire libre rodeada de vegetación en el glamping"
             loading="lazy"
             widths={[400, 640]}
             sizes="(min-width: 1024px) 26vw, 50vw"
-            class="aspect-square w-full rounded-3xl object-cover"
+            class="aspect-square w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
           />
         </div>
-        <div data-reveal data-reveal-delay="2">
+        <div class="group overflow-hidden rounded-3xl" data-reveal data-reveal-delay="2">
           <Image
             src={terrazaJacuzzi}
             alt="Terraza con jacuzzi y vista verde junto al domo azul"
             loading="lazy"
             widths={[400, 640]}
             sizes="(min-width: 1024px) 26vw, 50vw"
-            class="aspect-square w-full rounded-3xl object-cover"
+            class="aspect-square w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
           />
         </div>
       </div>

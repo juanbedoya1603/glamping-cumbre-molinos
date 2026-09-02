@@ -28,6 +28,10 @@
 
   --font-serif: "Playfair Display", "Georgia", serif;
   --font-sans: "Inter", "system-ui", sans-serif;
+
+  /* Strong, intentional easing curves — the default CSS easings are too weak to feel deliberate. */
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 @layer base {
@@ -88,13 +92,15 @@
 @layer components {
   [data-reveal] {
     opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    /* Never animate from scale(0) — nothing in the real world appears from nothing. */
+    transform: translateY(18px) scale(0.97);
+    transition: opacity 0.5s var(--ease-out-strong), transform 0.5s var(--ease-out-strong);
+    will-change: opacity, transform;
   }
 
   [data-reveal].is-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 
   [data-reveal-delay="1"] {
@@ -105,5 +111,22 @@
   }
   [data-reveal-delay="3"] {
     transition-delay: 0.24s;
+  }
+
+  /* Ambient hero scroll cue — a passive, looped invitation to keep scrolling. */
+  @keyframes scroll-cue-bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 0.55;
+    }
+    50% {
+      transform: translateY(6px);
+      opacity: 1;
+    }
+  }
+
+  .scroll-cue {
+    animation: scroll-cue-bounce 2s var(--ease-in-out-strong) infinite;
   }
 }

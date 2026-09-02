@@ -1,8 +1,10 @@
 ---
 import { Image } from 'astro:assets';
+import { site } from '../../config/site';
 import caballo from '../../assets/images/caballo-retrato-establo-glamping.jpg';
 import cerdito from '../../assets/images/cerdito-granja-glamping-naturaleza.jpg';
 import iguana from '../../assets/images/iguana-zona-verde-glamping.jpg';
+import lupita from '../../assets/images/lupita-pet-friendly-glamping.jpg';
 import WhatsappButton from '../WhatsappButton.astro';
 ---
 
@@ -22,14 +24,14 @@ import WhatsappButton from '../WhatsappButton.astro';
     </div>
 
     <!-- Los caballos — protagonistas -->
-    <div class="mt-10 relative overflow-hidden rounded-3xl" data-reveal data-reveal-delay="1">
+    <div class="group mt-10 relative overflow-hidden rounded-3xl" data-reveal data-reveal-delay="1">
       <Image
         src={caballo}
         alt="Retrato de uno de los caballos en el establo de Cumbre de los Molinos"
         loading="lazy"
         widths={[600, 1000, 1400]}
         sizes="100vw"
-        class="aspect-[4/5] w-full object-cover sm:aspect-[16/9]"
+        class="aspect-[4/5] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] sm:aspect-[16/9]"
       />
       <div
         class="pointer-events-none absolute inset-0"
@@ -54,16 +56,16 @@ import WhatsappButton from '../WhatsappButton.astro';
       </div>
     </div>
 
-    <!-- Mini cerdos e iguana — trato más ligero -->
-    <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2" data-reveal data-reveal-delay="2">
-      <div class="flex items-center gap-4 rounded-2xl bg-cream-100 p-4">
+    <!-- Mini cerdos, iguana, Lupita — trato más ligero -->
+    <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-3" data-reveal data-reveal-delay="2">
+      <div class="group flex items-center gap-4 rounded-2xl bg-cream-100 p-4 transition-[transform,box-shadow] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1 hover:shadow-md">
         <Image
           src={cerdito}
           alt="Mini cerdos en la zona de granja del glamping"
           loading="lazy"
           widths={[200, 300]}
           sizes="120px"
-          class="h-24 w-24 shrink-0 rounded-xl object-cover"
+          class="h-24 w-24 shrink-0 rounded-xl object-cover transition-transform duration-300 ease-out group-hover:scale-105"
         />
         <div>
           <h3 class="font-serif text-lg text-forest-900">Mini cerdos</h3>
@@ -73,14 +75,14 @@ import WhatsappButton from '../WhatsappButton.astro';
         </div>
       </div>
 
-      <div class="flex items-center gap-4 rounded-2xl bg-cream-100 p-4">
+      <div class="group flex items-center gap-4 rounded-2xl bg-cream-100 p-4 transition-[transform,box-shadow] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1 hover:shadow-md">
         <Image
           src={iguana}
           alt="Iguana en una zona verde del glamping"
           loading="lazy"
           widths={[200, 300]}
           sizes="120px"
-          class="h-24 w-24 shrink-0 rounded-xl object-cover"
+          class="h-24 w-24 shrink-0 rounded-xl object-cover transition-transform duration-300 ease-out group-hover:scale-105"
         />
         <div>
           <h3 class="font-serif text-lg text-forest-900">Fauna silvestre</h3>
@@ -90,6 +92,26 @@ import WhatsappButton from '../WhatsappButton.astro';
           </p>
         </div>
       </div>
+
+      {site.petFriendly && (
+        <div class="group flex items-center gap-4 rounded-2xl bg-cream-100 p-4 transition-[transform,box-shadow] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1 hover:shadow-md">
+          <Image
+            src={lupita}
+            alt="Lupita, la perrita de Cumbre de los Molinos"
+            loading="lazy"
+            widths={[200, 300]}
+            sizes="120px"
+            class="h-24 w-24 shrink-0 rounded-xl object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+          />
+          <div>
+            <h3 class="font-serif text-lg text-forest-900">Mascotas bienvenidas</h3>
+            <p class="mt-1 font-sans text-sm leading-relaxed text-ink-700">
+              Lupita hace parte de la familia de Cumbre de los Molinos — y la tuya también es
+              bienvenida durante tu estadía.
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   </div>
 </section>

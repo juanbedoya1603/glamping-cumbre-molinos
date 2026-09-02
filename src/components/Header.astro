@@ -22,10 +22,11 @@ const links = [
       {links.map((link) => (
         <a
           href={link.href}
-          class="font-sans text-sm font-medium text-cream-50/90 transition-colors hover:text-gold-400"
+          class="group relative font-sans text-sm font-medium text-cream-50/90 transition-colors duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-gold-400"
           data-header-text
         >
           {link.label}
+          <span class="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-gold-400 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-x-100" aria-hidden="true"></span>
         </a>
       ))}
     </nav>
@@ -36,14 +37,14 @@ const links = [
       rel="noopener noreferrer"
       data-whatsapp-cta
       data-section="header"
-      class="hidden items-center gap-2 rounded-full bg-gold-500 px-4 py-2 text-sm font-semibold text-forest-950 transition-transform active:scale-[0.97] hover:bg-gold-400 md:inline-flex"
+      class="hidden items-center gap-2 rounded-full bg-gold-500 px-4 py-2 text-sm font-semibold text-forest-950 transition-[transform,background-color] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-gold-400 active:scale-[0.97] md:inline-flex"
     >
       Consultar disponibilidad
     </a>
 
     <button
       type="button"
-      class="inline-flex h-10 w-10 items-center justify-center rounded-full text-cream-50 md:hidden"
+      class="inline-flex h-10 w-10 items-center justify-center rounded-full text-cream-50 transition-[transform,background-color] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-cream-50/10 active:scale-[0.93] md:hidden"
       data-mobile-menu-toggle
       aria-expanded="false"
       aria-controls="mobile-menu"
@@ -55,29 +56,38 @@ const links = [
     </button>
   </div>
 
-  <div id="mobile-menu" class="hidden flex-col gap-1 bg-forest-950 px-4 pb-6 pt-2 md:hidden" data-mobile-menu>
-    {links.map((link) => (
-      <a href={link.href} class="rounded-lg px-3 py-3 font-sans text-base text-cream-50" data-mobile-link>
-        {link.label}
+  <div
+    class="max-h-0 overflow-hidden bg-forest-950 transition-[max-height] duration-300 ease-[cubic-bezier(0.77,0,0.175,1)] md:hidden"
+    data-mobile-menu-wrapper
+  >
+    <div id="mobile-menu" class="flex flex-col gap-1 px-4 pb-6 pt-2" data-mobile-menu>
+      {links.map((link) => (
+        <a
+          href={link.href}
+          class="rounded-lg px-3 py-3 font-sans text-base text-cream-50 transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-cream-50/10 active:scale-[0.98]"
+          data-mobile-link
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href={buildWhatsappUrl('hero')}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-whatsapp-cta
+        data-section="header_mobile"
+        class="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-4 py-3 text-sm font-semibold text-forest-950 transition-transform duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97]"
+      >
+        Consultar disponibilidad
       </a>
-    ))}
-    <a
-      href={buildWhatsappUrl('hero')}
-      target="_blank"
-      rel="noopener noreferrer"
-      data-whatsapp-cta
-      data-section="header_mobile"
-      class="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-4 py-3 text-sm font-semibold text-forest-950 active:scale-[0.97]"
-    >
-      Consultar disponibilidad
-    </a>
+    </div>
   </div>
 </header>
 
 <script>
   const header = document.querySelector<HTMLElement>('[data-header]');
   const toggle = document.querySelector<HTMLButtonElement>('[data-mobile-menu-toggle]');
-  const menu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+  const menuWrapper = document.querySelector<HTMLElement>('[data-mobile-menu-wrapper]');
 
   const applyScrollState = () => {
     if (!header) return;
@@ -90,18 +100,19 @@ const links = [
   applyScrollState();
   window.addEventListener('scroll', applyScrollState, { passive: true });
 
-  toggle?.addEventListener('click', () => {
-    const isOpen = menu?.classList.contains('flex');
-    menu?.classList.toggle('flex', !isOpen);
-    menu?.classList.toggle('hidden', isOpen);
-    toggle.setAttribute('aria-expanded', String(!isOpen));
-  });
+  let menuOpen = false;
 
-  menu?.querySelectorAll('[data-mobile-link]').forEach((link) => {
-    link.addEventListener('click', () => {
-      menu.classList.add('hidden');
-      menu.classList.remove('flex');
-      toggle?.setAttribute('aria-expanded', 'false');
-    });
+  const setMenuOpen = (open: boolean) => {
+    menuOpen = open;
+    if (menuWrapper) {
+      menuWrapper.style.maxHeight = open ? `${menuWrapper.scrollHeight}px` : '0px';
+    }
+    toggle?.setAttribute('aria-expanded', String(open));
+  };
+
+  toggle?.addEventListener('click', () => setMenuOpen(!menuOpen));
+
+  menuWrapper?.querySelectorAll('[data-mobile-link]').forEach((link) => {
+    link.addEventListener('click', () => setMenuOpen(false));
   });
 </script>
