@@ -20,6 +20,13 @@ const {
 const canonicalUrl = new URL(path, site.siteUrl).toString();
 const ogImageUrl = new URL(ogImage, site.siteUrl).toString();
 
+/**
+ * Analytics loads only when a real ID is set (Cloudflare Pages env var /
+ * .env, never hardcoded). No ID configured yet → no script tag at all, so
+ * we never ship a broken/empty tracker. Set PUBLIC_GA4_ID to enable.
+ */
+const ga4Id = import.meta.env.PUBLIC_GA4_ID as string | undefined;
+
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'LodgingBusiness',
@@ -74,11 +81,25 @@ const schema = {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline />
+
+    {ga4Id && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`} is:inline></script>
+        <script is:inline define:vars={{ ga4Id }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', ga4Id);
+        </script>
+      </>
+    )}
   </head>
   <body class="bg-cream-50 text-ink-900 antialiased">
     <slot />
     <script>
       import '../scripts/reveal';
+      import '../scripts/analytics';
     </script>
   </body>
 </html>

@@ -37,3 +37,17 @@ npx wrangler pages deploy dist --project-name=glamping-cumbre-molinos
 `wrangler login` abre una ventana del navegador para autenticarte con tu cuenta de Cloudflare — esto lo debes hacer tú manualmente.
 
 Una vez que tengas la URL final de `*.pages.dev` (o un dominio propio), actualiza `site.siteUrl` en `astro.config.mjs` y `src/config/site.ts` para que el SEO (canonical, sitemap, Open Graph) apunte al dominio correcto.
+
+## Analytics (GA4 / Meta Pixel / TikTok Pixel)
+
+No hay ningún ID inventado — el sitio no carga ningún tracker hasta que se lo des.
+
+Para activar GA4: copia `.env.example` a `.env` (local) o define la variable en Cloudflare Pages (Settings → Environment variables) con tu ID real:
+
+```
+PUBLIC_GA4_ID=G-XXXXXXXXXX
+```
+
+Con eso, cada CTA de WhatsApp, apertura de galería y apertura de FAQ ya dispara automáticamente los eventos `click_whatsapp` (con `section`), `gallery_open` y `faq_open` — la lógica vive en `src/scripts/analytics.ts`, no hay que tocar componentes. Para Meta Pixel o TikTok Pixel, sigue el mismo patrón: variable de entorno `PUBLIC_*_ID`, cargar el script solo si existe, en `src/layouts/Layout.astro`.
+
+Antes de lanzar campañas pagas con estos trackers activos, revisa el consentimiento de cookies — no está implementado todavía.
