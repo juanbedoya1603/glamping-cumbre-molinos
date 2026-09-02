@@ -1,0 +1,35 @@
+---
+import { site } from '../config/site';
+---
+
+<footer class="bg-forest-950 px-5 py-12 text-cream-100 sm:px-8">
+  <div class="mx-auto flex max-w-6xl flex-col items-center gap-5 text-center">
+    <img src="/logo.png" alt={site.brandName} width="56" height="56" class="h-14 w-14 rounded-full object-cover" />
+    <div>
+      <p class="font-serif text-lg font-semibold text-cream-50">{site.brandName}</p>
+      <p class="mt-1 font-sans text-sm text-cream-100/70">
+        {site.location.city}, {site.location.department} · {site.location.nearby}
+      </p>
+    </div>
+
+    <a
+      href={`https://wa.me/${site.whatsapp.number}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="font-sans text-sm text-gold-400 transition-colors hover:text-gold-300"
+    >
+      {site.whatsapp.displayNumber}
+    </a>
+
+    {site.social.instagram && (
+      <a href={site.social.instagram} target="_blank" rel="noopener noreferrer" class="font-sans text-sm text-cream-100/70 hover:text-cream-50">
+        Instagram
+      </a>
+    )}
+
+    <p class="mt-4 font-sans text-xs text-cream-100/40">
+      © {new Date().getFullYear()} {site.brandName}. Todos los derechos reservados.
+      {site.rnt && <> · RNT {site.rnt}</>}
+    </p>
+  </div>
+</footer>

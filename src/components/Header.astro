@@ -1,0 +1,107 @@
+---
+import { buildWhatsappUrl } from '../lib/whatsapp';
+
+const links = [
+  { href: '#experiencia', label: 'Experiencia' },
+  { href: '#celebraciones', label: 'Celebraciones' },
+  { href: '#actividades', label: 'Actividades' },
+  { href: '#ubicacion', label: 'Ubicación' },
+];
+---
+
+<header id="site-header" class="fixed inset-x-0 top-0 z-40 transition-colors duration-300" data-header>
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+    <a href="#top" class="flex items-center gap-2">
+      <img src="/logo.png" alt="Glamping Cumbre de los Molinos" width="40" height="40" class="h-9 w-9 rounded-full object-cover sm:h-10 sm:w-10" />
+      <span class="font-serif text-sm font-semibold tracking-wide text-cream-50 sm:text-base" data-header-text>
+        Cumbre de los Molinos
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-7 md:flex">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          class="font-sans text-sm font-medium text-cream-50/90 transition-colors hover:text-gold-400"
+          data-header-text
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <a
+      href={buildWhatsappUrl('hero')}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-whatsapp-cta
+      data-section="header"
+      class="hidden items-center gap-2 rounded-full bg-gold-500 px-4 py-2 text-sm font-semibold text-forest-950 transition-transform active:scale-[0.97] hover:bg-gold-400 md:inline-flex"
+    >
+      Consultar disponibilidad
+    </a>
+
+    <button
+      type="button"
+      class="inline-flex h-10 w-10 items-center justify-center rounded-full text-cream-50 md:hidden"
+      data-mobile-menu-toggle
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Abrir menú"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden flex-col gap-1 bg-forest-950 px-4 pb-6 pt-2 md:hidden" data-mobile-menu>
+    {links.map((link) => (
+      <a href={link.href} class="rounded-lg px-3 py-3 font-sans text-base text-cream-50" data-mobile-link>
+        {link.label}
+      </a>
+    ))}
+    <a
+      href={buildWhatsappUrl('hero')}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-whatsapp-cta
+      data-section="header_mobile"
+      class="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-4 py-3 text-sm font-semibold text-forest-950 active:scale-[0.97]"
+    >
+      Consultar disponibilidad
+    </a>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]');
+  const toggle = document.querySelector<HTMLButtonElement>('[data-mobile-menu-toggle]');
+  const menu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+
+  const applyScrollState = () => {
+    if (!header) return;
+    const solid = window.scrollY > 48;
+    header.classList.toggle('bg-forest-950/95', solid);
+    header.classList.toggle('backdrop-blur-sm', solid);
+    header.classList.toggle('shadow-sm', solid);
+  };
+
+  applyScrollState();
+  window.addEventListener('scroll', applyScrollState, { passive: true });
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.contains('flex');
+    menu?.classList.toggle('flex', !isOpen);
+    menu?.classList.toggle('hidden', isOpen);
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+  });
+
+  menu?.querySelectorAll('[data-mobile-link]').forEach((link) => {
+    link.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      menu.classList.remove('flex');
+      toggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

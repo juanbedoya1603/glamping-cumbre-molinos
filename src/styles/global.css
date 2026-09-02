@@ -1,0 +1,106 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap');
+
+@theme {
+  /* Brand palette — grounded in the real logo (verde bosque, crema, tonos tierra, dorado suave).
+     No black+gold luxury cliché, no neon green, no glassmorphism. */
+  --color-forest-950: #14261c;
+  --color-forest-900: #1a3226;
+  --color-forest-800: #1f3d2e;
+  --color-forest-700: #2a4d3b;
+  --color-forest-600: #3a6350;
+
+  --color-cream-50: #fbf7ef;
+  --color-cream-100: #f5eedf;
+  --color-cream-200: #ede1c9;
+
+  --color-sand-300: #e3d5b8;
+  --color-sand-400: #d3bd94;
+
+  --color-clay-500: #b48a5e;
+  --color-clay-600: #a9754a;
+
+  --color-gold-400: #d3b370;
+  --color-gold-500: #c29a55;
+  --color-gold-600: #ad8542;
+
+  --color-ink-900: #241d14;
+  --color-ink-700: #4a3f2f;
+
+  --font-serif: "Playfair Display", "Georgia", serif;
+  --font-sans: "Inter", "system-ui", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-cream-50);
+    color: var(--color-ink-900);
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background-color: var(--color-gold-400);
+    color: var(--color-forest-950);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold-500);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+}
+
+@layer components {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  [data-reveal-delay="1"] {
+    transition-delay: 0.08s;
+  }
+  [data-reveal-delay="2"] {
+    transition-delay: 0.16s;
+  }
+  [data-reveal-delay="3"] {
+    transition-delay: 0.24s;
+  }
+}

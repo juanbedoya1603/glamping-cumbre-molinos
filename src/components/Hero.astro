@@ -1,0 +1,57 @@
+---
+import { getImage } from 'astro:assets';
+import posterSrc from '../assets/images/piscina-natural-vista-verde-glamping.jpg';
+import WhatsappButton from './WhatsappButton.astro';
+
+const poster = await getImage({ src: posterSrc, format: 'webp', width: 1080, quality: 80 });
+---
+
+<section id="top" class="relative flex h-[100svh] min-h-[560px] w-full items-end overflow-hidden bg-forest-950">
+  <video
+    class="absolute inset-0 h-full w-full object-cover"
+    data-hero-video
+    poster={poster.src}
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+  >
+    <source src="/hero-video.mp4" type="video/mp4" />
+  </video>
+
+  <!-- Controlled gradient: clean at top, builds toward the text zone at the bottom -->
+  <div
+    class="pointer-events-none absolute inset-0"
+    style="background: linear-gradient(to bottom, rgba(20,38,28,0) 0%, rgba(20,38,28,0) 38%, rgba(20,38,28,0.55) 68%, rgba(20,38,28,0.88) 100%);"
+  >
+  </div>
+
+  <div class="relative z-10 w-full px-5 pb-28 pt-24 sm:px-8 sm:pb-16 lg:px-16">
+    <div class="mx-auto max-w-3xl">
+      <p class="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold-400 sm:text-sm">
+        Dosquebradas · Risaralda
+      </p>
+      <h1 class="mt-3 font-serif text-4xl font-semibold leading-[1.08] text-cream-50 sm:text-5xl lg:text-6xl">
+        Escápate de la rutina<br />sin irte lejos.
+      </h1>
+      <p class="mt-4 font-sans text-base text-cream-100/90 sm:text-lg">
+        Domos · Jacuzzi · Naturaleza · Experiencias
+      </p>
+      <div class="mt-7">
+        <WhatsappButton section="hero" label="Consultar disponibilidad" size="lg" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const video = document.querySelector<HTMLVideoElement>('[data-hero-video]');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (video && prefersReduced) {
+    video.removeAttribute('autoplay');
+    video.pause();
+    video.setAttribute('aria-hidden', 'true');
+  }
+</script>

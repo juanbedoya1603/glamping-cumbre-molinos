@@ -1,0 +1,81 @@
+---
+import '../styles/global.css';
+import { site } from '../config/site';
+
+interface Props {
+  title?: string;
+  description: string;
+  /** Absolute or root-relative path to a 1200x630 social share image. */
+  ogImage?: string;
+  path?: string;
+}
+
+const {
+  title = `${site.brandName} | Glamping en Dosquebradas`,
+  description,
+  ogImage = '/og-image.jpg',
+  path = '/',
+} = Astro.props;
+
+const canonicalUrl = new URL(path, site.siteUrl).toString();
+const ogImageUrl = new URL(ogImage, site.siteUrl).toString();
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'LodgingBusiness',
+  name: site.brandName,
+  description,
+  url: site.siteUrl,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: site.location.city,
+    addressRegion: site.location.department,
+    addressCountry: 'CO',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: site.location.latitude,
+    longitude: site.location.longitude,
+  },
+  telephone: `+${site.whatsapp.number}`,
+};
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.brandName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content="es_CO" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </head>
+  <body class="bg-cream-50 text-ink-900 antialiased">
+    <slot />
+  </body>
+</html>

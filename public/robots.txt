@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://glamping-cumbre-molinos.pages.dev/sitemap-index.xml
