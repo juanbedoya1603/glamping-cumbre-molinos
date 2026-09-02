@@ -23,8 +23,8 @@ export const site = {
   siteUrl: 'https://glamping-cumbre-molinos.pages.dev',
   whatsapp: {
     /** E.164 without the leading "+", as required by wa.me links. Provisional per business request. */
-    number: '573218315340',
-    displayNumber: '+57 321 831 5340',
+    number: '573218727000',
+    displayNumber: '+57 321 872 7000',
   },
   social: {
     /** Fill in once the official account exists. */
@@ -50,7 +50,7 @@ export const whatsappMessages = {
   hero: 'Hola, vi la página de Glamping Cumbre de los Molinos y quiero consultar disponibilidad para una estadía.',
   sticky: 'Hola, quiero consultar disponibilidad en Glamping Cumbre de los Molinos.',
   accommodation: 'Hola, quiero conocer las opciones de alojamiento disponibles para mi fecha.',
-  jacuzzi: 'Hola, quiero conocer las opciones con jacuzzi disponibles.',
+  jacuzzi: 'Hola, quiero conocer las opciones con tina de agua caliente disponibles.',
   celebration: 'Hola, quiero preparar una sorpresa en Glamping Cumbre de los Molinos. ¿Qué opciones de decoración y precios tienen?',
   horseback: 'Hola, quiero información sobre alojamiento y cabalgata.',
   atv: 'Hola, quiero conocer las opciones de alojamiento y recorrido en cuatrimoto.',
