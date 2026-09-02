@@ -1,0 +1,36 @@
+---
+import { Image } from 'astro:assets';
+import atardecer from '../../assets/images/atardecer-domo-azul-piscina.jpg';
+import WhatsappButton from '../WhatsappButton.astro';
+---
+
+<section id="cta-final" class="relative flex min-h-[560px] items-center overflow-hidden bg-forest-950 px-5 py-24 sm:px-8 lg:px-16">
+  <Image
+    src={atardecer}
+    alt="Atardecer sobre el domo azul y la piscina de Cumbre de los Molinos"
+    loading="lazy"
+    widths={[600, 1000, 1600]}
+    sizes="100vw"
+    class="absolute inset-0 h-full w-full object-cover"
+  />
+  <div
+    class="pointer-events-none absolute inset-0"
+    style="background: linear-gradient(to top, rgba(20,38,28,0.92) 0%, rgba(20,38,28,0.6) 45%, rgba(20,38,28,0.35) 100%);"
+  >
+  </div>
+
+  <div class="relative z-10 mx-auto w-full max-w-3xl text-center" data-reveal>
+    <p class="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold-400">
+      Cumbre de los Molinos
+    </p>
+    <h2 class="mt-4 font-serif text-3xl font-semibold leading-[1.15] text-cream-50 sm:text-4xl lg:text-5xl">
+      Tu próxima escapada puede estar más cerca de lo que imaginas.
+    </h2>
+    <p class="mx-auto mt-5 max-w-xl font-sans text-base leading-relaxed text-cream-100/90 sm:text-lg">
+      Cuéntanos qué fecha tienes en mente y te mostramos las opciones disponibles.
+    </p>
+    <div class="mt-8 flex justify-center">
+      <WhatsappButton section="final" label="Contarles la fecha que tengo en mente" size="lg" />
+    </div>
+  </div>
+</section>

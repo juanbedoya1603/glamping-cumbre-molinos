@@ -1,0 +1,95 @@
+---
+import { Image } from 'astro:assets';
+import caballo from '../../assets/images/caballo-retrato-establo-glamping.jpg';
+import cerdito from '../../assets/images/cerdito-granja-glamping-naturaleza.jpg';
+import iguana from '../../assets/images/iguana-zona-verde-glamping.jpg';
+import WhatsappButton from '../WhatsappButton.astro';
+---
+
+<section id="naturaleza" class="bg-cream-50 px-5 py-20 sm:px-8 lg:px-16 lg:py-28">
+  <div class="mx-auto max-w-6xl">
+    <div class="max-w-2xl" data-reveal>
+      <p class="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-clay-600">
+        Naturaleza
+      </p>
+      <h2 class="mt-3 font-serif text-3xl font-semibold leading-tight text-forest-900 sm:text-4xl">
+        Naturaleza que se siente viva.
+      </h2>
+      <p class="mt-4 font-sans text-base leading-relaxed text-ink-700 sm:text-lg">
+        Cumbre de los Molinos está rodeado de campo abierto, y hay animales que hacen parte del
+        día a día de la finca.
+      </p>
+    </div>
+
+    <!-- Los caballos — protagonistas -->
+    <div class="mt-10 relative overflow-hidden rounded-3xl" data-reveal data-reveal-delay="1">
+      <Image
+        src={caballo}
+        alt="Retrato de uno de los caballos en el establo de Cumbre de los Molinos"
+        loading="lazy"
+        widths={[600, 1000, 1400]}
+        sizes="100vw"
+        class="aspect-[4/5] w-full object-cover sm:aspect-[16/9]"
+      />
+      <div
+        class="pointer-events-none absolute inset-0"
+        style="background: linear-gradient(to top, rgba(20,38,28,0.85) 0%, rgba(20,38,28,0.3) 45%, rgba(20,38,26,0) 72%);"
+      >
+      </div>
+      <div class="absolute inset-x-0 bottom-0 p-6 sm:p-10 lg:p-12">
+        <div class="max-w-xl">
+          <h3 class="font-serif text-2xl font-semibold text-cream-50 sm:text-3xl">Los caballos</h3>
+          <p class="mt-2 font-sans text-sm leading-relaxed text-cream-100/90 sm:text-base">
+            Los caballos son parte de la finca y también protagonistas de la cabalgata. Puedes
+            acercarte a conocerlos durante tu estadía.
+          </p>
+          <div class="mt-5">
+            <WhatsappButton
+              section="nature"
+              label="Preguntar por los caballos y la naturaleza del lugar"
+              size="md"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mini cerdos e iguana — trato más ligero -->
+    <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2" data-reveal data-reveal-delay="2">
+      <div class="flex items-center gap-4 rounded-2xl bg-cream-100 p-4">
+        <Image
+          src={cerdito}
+          alt="Mini cerdos en la zona de granja del glamping"
+          loading="lazy"
+          widths={[200, 300]}
+          sizes="120px"
+          class="h-24 w-24 shrink-0 rounded-xl object-cover"
+        />
+        <div>
+          <h3 class="font-serif text-lg text-forest-900">Mini cerdos</h3>
+          <p class="mt-1 font-sans text-sm leading-relaxed text-ink-700">
+            También hay mini cerdos en la zona de granja, parte de la vida cotidiana del lugar.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4 rounded-2xl bg-cream-100 p-4">
+        <Image
+          src={iguana}
+          alt="Iguana en una zona verde del glamping"
+          loading="lazy"
+          widths={[200, 300]}
+          sizes="120px"
+          class="h-24 w-24 shrink-0 rounded-xl object-cover"
+        />
+        <div>
+          <h3 class="font-serif text-lg text-forest-900">Fauna silvestre</h3>
+          <p class="mt-1 font-sans text-sm leading-relaxed text-ink-700">
+            En las zonas verdes, durante la estadía es posible encontrarse con fauna silvestre
+            propia del entorno, como iguanas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

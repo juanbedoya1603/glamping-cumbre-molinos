@@ -1,0 +1,184 @@
+---
+import WhatsappButton from '../WhatsappButton.astro';
+
+/**
+ * `schema: true` marks a question with a genuine, confirmed answer — those
+ * are the only ones emitted into the FAQPage JSON-LD below. Questions that
+ * just redirect to WhatsApp because the fact isn't confirmed yet in
+ * `site.ts` (parking, pets, check-in/out, payment methods) are answered
+ * honestly here but kept out of the schema so search engines never surface
+ * an "answer" that is really just "ask us."
+ */
+const faqs = [
+  {
+    question: '¿Qué opciones de alojamiento tienen?',
+    answer:
+      'Contamos con varios domos, cada uno con su propio estilo — algunos con jacuzzi y vista a la montaña. Cuéntanos por WhatsApp qué buscas y te mostramos las opciones disponibles para tu fecha.',
+    schema: true,
+  },
+  {
+    question: '¿Hay alojamientos con jacuzzi?',
+    answer:
+      'Sí, algunos de nuestros domos cuentan con jacuzzi. Escríbenos y te contamos cuáles están disponibles para tu fecha.',
+    schema: true,
+  },
+  {
+    question: '¿Cómo consulto disponibilidad?',
+    answer:
+      'Escríbenos por WhatsApp contándonos la fecha que tienes en mente y te confirmamos qué opciones tenemos disponibles para ese día.',
+    schema: true,
+  },
+  {
+    question: '¿Puedo celebrar un cumpleaños o aniversario?',
+    answer:
+      'Sí, es posible organizar un cumpleaños, aniversario o sorpresa especial con decoración en tu alojamiento. Cuéntanos qué estás celebrando y para qué fecha.',
+    schema: true,
+  },
+  {
+    question: '¿Cómo funcionan las decoraciones?',
+    answer:
+      'La decoración se coordina antes de tu llegada, según la ocasión que nos cuentes. Escríbenos por WhatsApp con los detalles de tu celebración y te contamos cómo funciona para tu fecha.',
+    schema: false,
+  },
+  {
+    question: '¿La cabalgata está incluida?',
+    answer:
+      'No — la cabalgata es una experiencia adicional y está sujeta a disponibilidad, no hace parte del alojamiento por defecto. Escríbenos si quieres incluirla en tu estadía.',
+    schema: true,
+  },
+  {
+    question: '¿Tienen recorridos en cuatrimoto?',
+    answer:
+      'Sí, hay recorridos en cuatrimoto disponibles como experiencia adicional, sujeta a disponibilidad. Escríbenos para consultar fechas.',
+    schema: true,
+  },
+  {
+    question: '¿Hay piscina?',
+    answer: 'Sí, contamos con una piscina natural rodeada de vegetación.',
+    schema: true,
+  },
+  {
+    question: '¿Puedo pedir comida?',
+    answer:
+      'No preparamos comidas en el sitio, pero puedes pedir directamente a tu alojamiento — consulta las opciones disponibles por WhatsApp.',
+    schema: true,
+  },
+  {
+    question: '¿Dónde están ubicados?',
+    answer:
+      'Estamos en Dosquebradas, Risaralda, cerca de Pereira. Escríbenos por WhatsApp y te compartimos la ubicación exacta y cómo llegar.',
+    schema: true,
+  },
+  {
+    question: '¿Hay parqueadero?',
+    answer: 'Cuéntanos por WhatsApp y te confirmamos la disponibilidad de parqueadero para tu fecha.',
+    schema: false,
+  },
+  {
+    question: '¿Aceptan mascotas?',
+    answer: 'Cuéntanos por WhatsApp y te confirmamos la política de mascotas antes de tu reserva.',
+    schema: false,
+  },
+  {
+    question: '¿Cuál es el horario de llegada y salida?',
+    answer: 'Cuéntanos por WhatsApp y te confirmamos el horario de llegada y salida para tu fecha.',
+    schema: false,
+  },
+  {
+    question: '¿Qué medios de pago aceptan?',
+    answer: 'Cuéntanos por WhatsApp y te contamos qué medios de pago tenemos disponibles.',
+    schema: false,
+  },
+] as const;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs
+    .filter((faq) => faq.schema)
+    .map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+};
+---
+
+<section id="faq" class="bg-cream-50 px-5 py-20 sm:px-8 lg:px-16 lg:py-28">
+  <div class="mx-auto max-w-3xl">
+    <div class="max-w-2xl" data-reveal>
+      <p class="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-clay-600">
+        Preguntas frecuentes
+      </p>
+      <h2 class="mt-3 font-serif text-3xl font-semibold leading-tight text-forest-900 sm:text-4xl">
+        Antes de escribirnos.
+      </h2>
+      <p class="mt-4 font-sans text-base leading-relaxed text-ink-700 sm:text-lg">
+        Lo que más nos preguntan. Si tu duda no está aquí, escríbenos y te respondemos directo.
+      </p>
+    </div>
+
+    <div class="mt-10 divide-y divide-sand-400/60 border-y border-sand-400/60" data-reveal data-reveal-delay="1">
+      {faqs.map((faq) => (
+        <details class="faq-item group py-1">
+          <summary class="faq-summary flex cursor-pointer list-none items-center justify-between gap-4 py-4 font-sans text-base font-semibold text-forest-900 marker:content-none sm:text-lg">
+            <span>{faq.question}</span>
+            <svg
+              class="faq-chevron shrink-0 text-forest-700"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </summary>
+          <div class="faq-answer pb-5 pr-8 font-sans text-sm leading-relaxed text-ink-700 sm:text-base">
+            {faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <div class="mt-9 flex justify-center" data-reveal data-reveal-delay="2">
+      <WhatsappButton section="faq" label="Tengo otra pregunta, escribir por WhatsApp" />
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline />
+
+<style>
+  .faq-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-chevron {
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  details[open] .faq-chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    animation: faq-reveal 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @keyframes faq-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

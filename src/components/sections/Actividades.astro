@@ -1,0 +1,88 @@
+---
+import { Image } from 'astro:assets';
+import cabalgata from '../../assets/images/cabalgata-porton-campo-glamping.jpg';
+import cuatrimotos from '../../assets/images/cuatrimotos-aventura-glamping.jpg';
+import WhatsappButton from '../WhatsappButton.astro';
+
+const badge = 'Experiencia adicional · Sujeta a disponibilidad';
+---
+
+<section id="actividades" class="bg-cream-100 px-5 py-20 sm:px-8 lg:px-16 lg:py-28">
+  <div class="mx-auto max-w-6xl">
+    <div class="max-w-2xl" data-reveal>
+      <p class="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-clay-600">
+        Experiencias adicionales
+      </p>
+      <h2 class="mt-3 font-serif text-3xl font-semibold leading-tight text-forest-900 sm:text-4xl">
+        Dos formas de recorrer la finca.
+      </h2>
+      <p class="mt-4 font-sans text-base leading-relaxed text-ink-700 sm:text-lg">
+        Además del alojamiento, puedes sumar una cabalgata o un recorrido en cuatrimoto por los
+        alrededores. Son experiencias adicionales, sujetas a disponibilidad — cuéntanos con
+        anticipación si quieres incluirlas en tu estadía.
+      </p>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
+      <!-- Cabalgata — ritmo tranquilo -->
+      <div class="relative overflow-hidden rounded-3xl" data-reveal data-reveal-delay="1">
+        <Image
+          src={cabalgata}
+          alt="Cabalgata saliendo por el portón del campo en Cumbre de los Molinos"
+          loading="lazy"
+          widths={[480, 828, 1200]}
+          sizes="(min-width: 1024px) 46vw, 100vw"
+          class="aspect-[4/5] w-full object-cover sm:aspect-[3/4]"
+        />
+        <div
+          class="pointer-events-none absolute inset-0"
+          style="background: linear-gradient(to top, rgba(20,38,28,0.88) 0%, rgba(20,38,28,0.4) 42%, rgba(20,38,28,0) 70%);"
+        >
+        </div>
+        <div class="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+          <span class="inline-block rounded-full bg-cream-50/15 px-3 py-1 font-sans text-[11px] font-semibold uppercase tracking-wide text-cream-50 backdrop-blur-sm">
+            {badge}
+          </span>
+          <h3 class="mt-3 font-serif text-2xl font-semibold text-cream-50">Cabalgata</h3>
+          <p class="mt-2 font-sans text-sm leading-relaxed text-cream-100/90 sm:text-base">
+            Un recorrido a caballo por el campo, a paso tranquilo, para ver la finca desde otro
+            ángulo.
+          </p>
+          <div class="mt-5">
+            <WhatsappButton section="horseback" label="Preguntar por cabalgata" size="md" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Cuatrimotos — sube el ritmo -->
+      <div class="relative overflow-hidden rounded-3xl lg:mt-10" data-reveal data-reveal-delay="2">
+        <Image
+          src={cuatrimotos}
+          alt="Recorrido en cuatrimoto por los alrededores del glamping"
+          loading="lazy"
+          widths={[480, 828, 1200]}
+          sizes="(min-width: 1024px) 46vw, 100vw"
+          class="aspect-[4/5] w-full object-cover sm:aspect-[3/4]"
+        />
+        <div
+          class="pointer-events-none absolute inset-0"
+          style="background: linear-gradient(to top, rgba(20,38,28,0.88) 0%, rgba(20,38,28,0.4) 42%, rgba(20,38,28,0) 70%);"
+        >
+        </div>
+        <div class="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+          <span class="inline-block rounded-full bg-cream-50/15 px-3 py-1 font-sans text-[11px] font-semibold uppercase tracking-wide text-cream-50 backdrop-blur-sm">
+            {badge}
+          </span>
+          <h3 class="mt-3 font-serif text-2xl font-semibold text-cream-50">Cuatrimotos</h3>
+          <p class="mt-2 font-sans text-sm leading-relaxed text-cream-100/90 sm:text-base">
+            Si prefieres más adrenalina, hay recorridos en cuatrimoto por los alrededores del
+            glamping.
+          </p>
+          <div class="mt-5">
+            <WhatsappButton section="atv" label="Preguntar por cuatrimotos" size="md" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

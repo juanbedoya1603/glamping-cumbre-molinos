@@ -1,17 +1,38 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import StickyWhatsappBar from '../components/StickyWhatsappBar';
+import Footer from '../components/Footer.astro';
+import PromiseSection from '../components/sections/PromiseSection.astro';
+import Escapada from '../components/sections/Escapada.astro';
+import Alojamiento from '../components/sections/Alojamiento.astro';
+import Romance from '../components/sections/Romance.astro';
+import Celebraciones from '../components/sections/Celebraciones.astro';
+import Actividades from '../components/sections/Actividades.astro';
+import Naturaleza from '../components/sections/Naturaleza.astro';
+import ServicioHabitacion from '../components/sections/ServicioHabitacion.astro';
+import Gallery from '../components/sections/Gallery.astro';
+import Ubicacion from '../components/sections/Ubicacion.astro';
+import Faq from '../components/sections/Faq.astro';
+import CtaFinal from '../components/sections/CtaFinal.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout description="Glamping Cumbre de los Molinos, en Dosquebradas, Risaralda, cerca de Pereira. Domos, jacuzzi y naturaleza para tu próxima escapada en pareja. Consulta disponibilidad por WhatsApp.">
+  <Header />
+  <Hero />
+  <PromiseSection />
+  <Escapada />
+  <Alojamiento />
+  <Romance />
+  <Celebraciones />
+  <Actividades />
+  <Naturaleza />
+  <ServicioHabitacion />
+  <Gallery />
+  <Ubicacion />
+  <Faq />
+  <CtaFinal />
+  <Footer />
+  <StickyWhatsappBar client:load />
+</Layout>

@@ -65,6 +65,10 @@
     text-wrap: balance;
   }
 
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
   ::selection {
     background-color: var(--color-gold-400);
     color: var(--color-forest-950);

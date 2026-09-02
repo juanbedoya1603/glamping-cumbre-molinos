@@ -1,0 +1,32 @@
+---
+import WhatsappButton from '../WhatsappButton.astro';
+---
+
+<section id="servicio-habitacion" class="bg-forest-900 px-5 py-14 sm:px-8 sm:py-16 lg:px-16">
+  <div class="mx-auto flex max-w-6xl flex-col items-center gap-6 text-center sm:flex-row sm:items-center sm:gap-8 sm:text-left" data-reveal>
+    <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-cream-50/10">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-gold-400" aria-hidden="true">
+        <path
+          d="M4 15c0-4.42 3.58-8 8-8s8 3.58 8 8H4Z"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>
+        <path d="M3 18h18" stroke-linecap="round"></path>
+        <path d="M12 7V4" stroke-linecap="round"></path>
+        <circle cx="12" cy="3" r="0.9" fill="currentColor" stroke="none"></circle>
+      </svg>
+    </div>
+
+    <div class="flex-1">
+      <h2 class="font-serif text-2xl font-semibold text-cream-50 sm:text-3xl">Quédate cómodo.</h2>
+      <p class="mt-2 font-sans text-sm leading-relaxed text-cream-100/80 sm:text-base">
+        ¿Te dio hambre? Consulta las opciones disponibles para pedir directamente a tu
+        alojamiento.
+      </p>
+    </div>
+
+    <div class="shrink-0">
+      <WhatsappButton section="food" label="Consultar opciones para pedir a la habitación" variant="outline" size="md" />
+    </div>
+  </div>
+</section>

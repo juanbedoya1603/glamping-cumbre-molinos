@@ -1,0 +1,67 @@
+---
+import { Image } from 'astro:assets';
+import interiorDomoTransparente from '../../assets/images/interior-domo-transparente-jacuzzi-terraza.jpg';
+import habitacionRomantica from '../../assets/images/habitacion-romantica-jacuzzi-globos.jpg';
+import suitePresidencial from '../../assets/images/suite-presidencial-jacuzzi-cama-romantica.jpg';
+import WhatsappButton from '../WhatsappButton.astro';
+---
+
+<section id="romance" class="bg-cream-50 px-5 py-20 sm:px-8 lg:px-16 lg:py-28">
+  <div class="mx-auto max-w-6xl">
+    <div class="relative overflow-hidden rounded-3xl" data-reveal>
+      <Image
+        src={interiorDomoTransparente}
+        alt="Interior de domo con vista hacia la terraza y el jacuzzi"
+        loading="lazy"
+        widths={[600, 1000, 1400]}
+        sizes="100vw"
+        class="aspect-[4/5] w-full object-cover sm:aspect-[16/10]"
+      />
+      <div
+        class="pointer-events-none absolute inset-0"
+        style="background: linear-gradient(to top, rgba(20,38,28,0.85) 0%, rgba(20,38,28,0.35) 45%, rgba(20,38,28,0) 75%);"
+      >
+      </div>
+      <div class="absolute inset-x-0 bottom-0 p-6 sm:p-10 lg:p-14">
+        <div class="max-w-xl">
+          <p class="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold-400">
+            Para los dos
+          </p>
+          <h2 class="mt-3 font-serif text-3xl font-semibold leading-tight text-cream-50 sm:text-4xl">
+            Un jacuzzi, la montaña y nada de afán.
+          </h2>
+          <p class="mt-4 font-sans text-base leading-relaxed text-cream-100/90 sm:text-lg">
+            Una tarde para ustedes dos: agua caliente, vista abierta y silencio. Consulta las
+            opciones con jacuzzi disponibles para tu fecha — te confirmamos cuál aplica.
+          </p>
+          <div class="mt-7">
+            <WhatsappButton section="jacuzzi" label="Consultar opciones con jacuzzi" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-5 grid grid-cols-2 gap-4 sm:gap-5">
+      <div data-reveal data-reveal-delay="1">
+        <Image
+          src={habitacionRomantica}
+          alt="Habitación con decoración romántica junto al jacuzzi"
+          loading="lazy"
+          widths={[400, 640]}
+          sizes="(min-width: 1024px) 26vw, 50vw"
+          class="aspect-[4/5] w-full rounded-2xl object-cover"
+        />
+      </div>
+      <div data-reveal data-reveal-delay="2">
+        <Image
+          src={suitePresidencial}
+          alt="Suite con jacuzzi y ambientación romántica"
+          loading="lazy"
+          widths={[400, 640]}
+          sizes="(min-width: 1024px) 26vw, 50vw"
+          class="aspect-[4/5] w-full rounded-2xl object-cover"
+        />
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,80 @@
+---
+import { Image } from 'astro:assets';
+import exteriorDomoAzul from '../../assets/images/exterior-domo-azul-terraza-sillas.jpg';
+import domoRojo from '../../assets/images/domo-rojo-terraza-romantica.jpg';
+import WhatsappButton from '../WhatsappButton.astro';
+
+const opciones = [
+  {
+    nombre: 'Domos',
+    detalle: 'Para descansar en medio del verde, con vista a las montañas de Dosquebradas.',
+  },
+  {
+    nombre: 'Suites con jacuzzi',
+    detalle: 'Consulta las opciones con jacuzzi disponibles para tu fecha.',
+  },
+  {
+    nombre: 'Espacios para celebrar',
+    detalle: 'Pensados para cumpleaños, aniversarios y sorpresas románticas.',
+  },
+];
+---
+
+<section id="alojamiento" class="bg-cream-100 px-5 py-20 sm:px-8 lg:px-16 lg:py-28">
+  <div class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-12 lg:gap-10">
+    <div class="lg:col-span-6 lg:order-1">
+      <div class="grid grid-cols-5 gap-4" data-reveal>
+        <div class="col-span-3">
+          <Image
+            src={exteriorDomoAzul}
+            alt="Exterior de domo azul con terraza y sillas"
+            loading="lazy"
+            widths={[400, 640, 900]}
+            sizes="(min-width: 1024px) 32vw, 60vw"
+            class="aspect-[3/4] w-full rounded-3xl object-cover"
+          />
+        </div>
+        <div class="col-span-2 self-end">
+          <Image
+            src={domoRojo}
+            alt="Domo rojo con terraza para una velada romántica"
+            loading="lazy"
+            widths={[300, 480]}
+            sizes="(min-width: 1024px) 18vw, 40vw"
+            class="aspect-[3/4] w-full rounded-3xl object-cover"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-6 lg:order-2" data-reveal data-reveal-delay="1">
+      <p class="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-clay-600">
+        Alojamiento
+      </p>
+      <h2 class="mt-3 font-serif text-3xl font-semibold leading-tight text-forest-900 sm:text-4xl">
+        Cada estadía es distinta.
+      </h2>
+      <p class="mt-4 font-sans text-base leading-relaxed text-ink-700 sm:text-lg">
+        Hay domos con vista a las montañas, suites con jacuzzi y espacios pensados para celebrar
+        una fecha especial. La mejor opción depende de tu fecha y de lo que estés planeando.
+      </p>
+
+      <dl class="mt-8 divide-y divide-sand-400/70 border-y border-sand-400/70">
+        {opciones.map((opcion) => (
+          <div class="flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+            <dt class="font-serif text-lg text-forest-900">{opcion.nombre}</dt>
+            <dd class="font-sans text-sm text-ink-700 sm:max-w-xs sm:text-right">{opcion.detalle}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <p class="mt-6 font-sans text-base leading-relaxed text-ink-700">
+        Cuéntanos tu fecha y te mostramos las opciones disponibles para ese día.
+      </p>
+
+      <div class="mt-6">
+        <WhatsappButton section="accommodation" label="Cuéntanos tu fecha" />
+      </div>
+    </div>
+  </div>
+</section>

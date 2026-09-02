@@ -1,0 +1,89 @@
+---
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Gallery, { type GalleryImage } from './Gallery';
+import WhatsappButton from '../WhatsappButton.astro';
+
+import atardecer from '../../assets/images/atardecer-domo-azul-piscina.jpg';
+import piscina from '../../assets/images/piscina-natural-vista-verde-glamping.jpg';
+import jacuzziTerraza from '../../assets/images/terraza-jacuzzi-domo-azul-vista-verde.jpg';
+import exteriorAzul from '../../assets/images/exterior-domo-azul-terraza-sillas.jpg';
+import domoRojo from '../../assets/images/domo-rojo-terraza-romantica.jpg';
+import habitacionMontanas from '../../assets/images/habitacion-domo-vista-montanas-cama.jpg';
+import suitePresidencial from '../../assets/images/suite-presidencial-jacuzzi-cama-romantica.jpg';
+import interiorGlobos from '../../assets/images/interior-domo-vista-montanas-globos.jpg';
+import cabalgata from '../../assets/images/cabalgata-porton-campo-glamping.jpg';
+import cuatrimotos from '../../assets/images/cuatrimotos-aventura-glamping.jpg';
+import caballoRetrato from '../../assets/images/caballo-retrato-establo-glamping.jpg';
+import iguana from '../../assets/images/iguana-zona-verde-glamping.jpg';
+
+/**
+ * The first MOBILE_VISIBLE_COUNT entries are the curated mobile set; the
+ * rest only appear on mobile after "Ver más fotos". Desktop always shows
+ * everything through the masonry grid. Order here doubles as visual
+ * priority — put the strongest shots first.
+ */
+const MOBILE_VISIBLE_COUNT = 9;
+
+const curated: Array<{ id: string; src: ImageMetadata; alt: string; span: GalleryImage['span'] }> = [
+  { id: 'atardecer', src: atardecer, alt: 'Atardecer sobre el domo azul y la piscina de Cumbre de los Molinos', span: 'feature' },
+  { id: 'piscina', src: piscina, alt: 'Piscina natural rodeada de vegetación en el glamping', span: 'wide' },
+  { id: 'jacuzzi-terraza', src: jacuzziTerraza, alt: 'Terraza con jacuzzi del domo azul y vista al paisaje verde', span: 'normal' },
+  { id: 'exterior-azul', src: exteriorAzul, alt: 'Exterior del domo azul con terraza y sillas al aire libre', span: 'tall' },
+  { id: 'domo-rojo', src: domoRojo, alt: 'Domo rojo con terraza romántica al atardecer', span: 'normal' },
+  { id: 'habitacion-montanas', src: habitacionMontanas, alt: 'Habitación en domo con cama y vista a las montañas', span: 'normal' },
+  { id: 'suite-presidencial', src: suitePresidencial, alt: 'Suite con jacuzzi y ambientación romántica', span: 'feature' },
+  { id: 'interior-globos', src: interiorGlobos, alt: 'Interior de domo decorado con globos y vista a las montañas', span: 'normal' },
+  { id: 'cabalgata', src: cabalgata, alt: 'Cabalgata saliendo por el portón del campo del glamping', span: 'wide' },
+  { id: 'cuatrimotos', src: cuatrimotos, alt: 'Recorrido en cuatrimoto por los alrededores del glamping', span: 'normal' },
+  { id: 'caballo-retrato', src: caballoRetrato, alt: 'Retrato de uno de los caballos junto al establo', span: 'tall' },
+  { id: 'iguana', src: iguana, alt: 'Iguana en una zona verde del glamping', span: 'normal' },
+];
+
+const images: GalleryImage[] = await Promise.all(
+  curated.map(async (item) => {
+    const [thumb480, thumb720, full] = await Promise.all([
+      getImage({ src: item.src, width: 480, format: 'webp', quality: 75 }),
+      getImage({ src: item.src, width: 720, format: 'webp', quality: 75 }),
+      getImage({ src: item.src, width: 1400, format: 'webp', quality: 82 }),
+    ]);
+
+    return {
+      id: item.id,
+      alt: item.alt,
+      span: item.span,
+      thumbSrc: thumb480.src,
+      thumbSrcSet: `${thumb480.src} 480w, ${thumb720.src} 720w`,
+      thumbWidth: Number(thumb480.attributes.width) || 480,
+      thumbHeight: Number(thumb480.attributes.height) || 480,
+      fullSrc: full.src,
+      fullWidth: Number(full.attributes.width) || 1400,
+      fullHeight: Number(full.attributes.height) || 1400,
+    };
+  })
+);
+---
+
+<section id="galeria" class="bg-cream-50 px-5 py-20 sm:px-8 lg:px-16 lg:py-28">
+  <div class="mx-auto max-w-6xl">
+    <div class="max-w-2xl" data-reveal>
+      <p class="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-clay-600">
+        Galería
+      </p>
+      <h2 class="mt-3 font-serif text-3xl font-semibold leading-tight text-forest-900 sm:text-4xl">
+        Un vistazo antes de llegar.
+      </h2>
+      <p class="mt-4 font-sans text-base leading-relaxed text-ink-700 sm:text-lg">
+        Domos, naturaleza y experiencias reales de Cumbre de los Molinos — así se ve estar aquí.
+      </p>
+    </div>
+
+    <div class="mt-9" data-reveal data-reveal-delay="1">
+      <Gallery client:visible images={images} mobileVisibleCount={MOBILE_VISIBLE_COUNT} />
+    </div>
+
+    <div class="mt-9 flex justify-center" data-reveal data-reveal-delay="2">
+      <WhatsappButton section="gallery" label="Ver la galería y consultar disponibilidad" />
+    </div>
+  </div>
+</section>
