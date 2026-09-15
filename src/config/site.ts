@@ -49,6 +49,7 @@ export const whatsappMessages = {
   hero: 'Hola, vi la página de Glamping Cumbre de los Molinos y quiero consultar disponibilidad para una estadía.',
   sticky: 'Hola, quiero consultar disponibilidad en Glamping Cumbre de los Molinos.',
   accommodation: 'Hola, quiero conocer las opciones de alojamiento disponibles para mi fecha.',
+  rates: 'Hola, quiero consultar tarifas y disponibilidad en Glamping Cumbre de los Molinos para mi fecha.',
   jacuzzi: 'Hola, quiero conocer las opciones con tina de agua caliente disponibles.',
   celebration: 'Hola, quiero preparar una sorpresa en Glamping Cumbre de los Molinos. ¿Qué opciones de decoración y precios tienen?',
   horseback: 'Hola, quiero información sobre alojamiento y cabalgata.',
