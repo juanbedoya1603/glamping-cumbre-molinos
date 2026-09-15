@@ -5,6 +5,12 @@ import piscina from '../../assets/images/piscina-natural-vista-verde-glamping.jp
 import terrazaJacuzzi from '../../assets/images/terraza-jacuzzi-domo-azul-vista-verde.jpg';
 import WhatsappButton from '../WhatsappButton.astro';
 
+interface Props {
+  showCta?: boolean;
+}
+
+const { showCta = true } = Astro.props;
+
 const atardecerPoster = await getImage({ src: atardecer, width: 1200, format: 'webp', quality: 80 });
 ---
 
@@ -63,8 +69,8 @@ const atardecerPoster = await getImage({ src: atardecer, width: 1200, format: 'w
       </div>
     </div>
 
-    <div class="mt-10" data-reveal>
+    {showCta && <div class="mt-10" data-reveal>
       <WhatsappButton section="accommodation" label="Ver disponibilidad" variant="ghost" />
-    </div>
+    </div>}
   </div>
 </section>

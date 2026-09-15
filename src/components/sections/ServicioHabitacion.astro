@@ -1,5 +1,11 @@
 ---
 import WhatsappButton from '../WhatsappButton.astro';
+
+interface Props {
+  showCta?: boolean;
+}
+
+const { showCta = true } = Astro.props;
 ---
 
 <section id="servicio-habitacion" class="bg-forest-900 px-5 py-14 sm:px-8 sm:py-16 lg:px-16">
@@ -25,8 +31,8 @@ import WhatsappButton from '../WhatsappButton.astro';
       </p>
     </div>
 
-    <div class="shrink-0">
+    {showCta && <div class="shrink-0">
       <WhatsappButton section="food" label="Consultar opciones para pedir a la habitación" variant="outline" size="md" />
-    </div>
+    </div>}
   </div>
 </section>

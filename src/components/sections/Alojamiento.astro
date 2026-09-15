@@ -4,6 +4,12 @@ import terrazaDomoVerdeJacuzzi from '../../assets/images/terraza-domo-verde-jacu
 import domoRojo from '../../assets/images/domo-rojo-terraza-romantica.jpg';
 import WhatsappButton from '../WhatsappButton.astro';
 
+interface Props {
+  showCta?: boolean;
+}
+
+const { showCta = true } = Astro.props;
+
 const opciones = [
   {
     nombre: 'Domos',
@@ -72,9 +78,9 @@ const opciones = [
         Cuéntanos tu fecha y te mostramos las opciones disponibles para ese día.
       </p>
 
-      <div class="mt-6">
+      {showCta && <div class="mt-6">
         <WhatsappButton section="accommodation" label="Cuéntanos tu fecha" />
-      </div>
+      </div>}
     </div>
   </div>
 </section>

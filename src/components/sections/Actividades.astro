@@ -4,6 +4,12 @@ import cabalgata from '../../assets/images/cabalgata-porton-campo-glamping.jpg';
 import cuatrimotos from '../../assets/images/cuatrimotos-aventura-glamping.jpg';
 import WhatsappButton from '../WhatsappButton.astro';
 
+interface Props {
+  showCta?: boolean;
+}
+
+const { showCta = true } = Astro.props;
+
 const badge = 'Experiencia adicional · Sujeta a disponibilidad';
 ---
 
@@ -48,9 +54,9 @@ const badge = 'Experiencia adicional · Sujeta a disponibilidad';
             Un recorrido a caballo por el campo, a paso tranquilo, para ver la vereda desde otro
             ángulo.
           </p>
-          <div class="mt-5">
+          {showCta && <div class="mt-5">
             <WhatsappButton section="horseback" label="Preguntar por cabalgata" size="md" />
-          </div>
+          </div>}
         </div>
       </div>
 
@@ -78,9 +84,9 @@ const badge = 'Experiencia adicional · Sujeta a disponibilidad';
             Si prefieres más adrenalina, hay recorridos en cuatrimoto por los alrededores del
             glamping.
           </p>
-          <div class="mt-5">
+          {showCta && <div class="mt-5">
             <WhatsappButton section="atv" label="Preguntar por cuatrimotos" size="md" />
-          </div>
+          </div>}
         </div>
       </div>
     </div>

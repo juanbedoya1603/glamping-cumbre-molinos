@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { motionTokens, springs } from '../../lib/motion-tokens';
-import { buildWhatsappUrl } from '../../lib/whatsapp';
 
 export interface GalleryImage {
   id: string;
@@ -20,6 +19,7 @@ interface GalleryProps {
   images: GalleryImage[];
   /** How many images stay visible on mobile before "Ver más fotos" reveals the rest. Desktop always shows all. */
   mobileVisibleCount: number;
+  contactUrl?: string;
 }
 
 const SPAN_CLASSES: Record<GalleryImage['span'], string> = {
@@ -35,7 +35,7 @@ const SPAN_CLASSES: Record<GalleryImage['span'], string> = {
  * AnimatePresence + stable key + exit always defined, role="dialog" +
  * aria-modal, Escape-to-close, focus trap, scroll lock.
  */
-export default function Gallery({ images, mobileVisibleCount }: GalleryProps) {
+export default function Gallery({ images, mobileVisibleCount, contactUrl }: GalleryProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [revealed, setRevealed] = useState(false);
   const reduceMotion = useReducedMotion();
@@ -271,8 +271,8 @@ export default function Gallery({ images, mobileVisibleCount }: GalleryProps) {
                 <p className="font-sans text-xs text-cream-100/60">
                   {openIndex !== null ? openIndex + 1 : 0} / {images.length}
                 </p>
-                <a
-                  href={buildWhatsappUrl('gallery')}
+                {contactUrl && <a
+                  href={contactUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   data-whatsapp-cta
@@ -280,7 +280,7 @@ export default function Gallery({ images, mobileVisibleCount }: GalleryProps) {
                   className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full bg-gold-500 px-5 text-sm font-semibold text-forest-950 transition-transform active:scale-[0.97] hover:bg-gold-400"
                 >
                   Consultar disponibilidad
-                </a>
+                </a>}
               </div>
             </motion.div>
           </motion.div>

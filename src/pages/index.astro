@@ -1,40 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import StickyWhatsappBar from '../components/StickyWhatsappBar';
-import Footer from '../components/Footer.astro';
-import PromiseSection from '../components/sections/PromiseSection.astro';
-import Escapada from '../components/sections/Escapada.astro';
-import Alojamiento from '../components/sections/Alojamiento.astro';
-import Tarifas from '../components/sections/Tarifas.astro';
-import Romance from '../components/sections/Romance.astro';
-import Celebraciones from '../components/sections/Celebraciones.astro';
-import Actividades from '../components/sections/Actividades.astro';
-import Naturaleza from '../components/sections/Naturaleza.astro';
-import ServicioHabitacion from '../components/sections/ServicioHabitacion.astro';
-import Gallery from '../components/sections/Gallery.astro';
-import Ubicacion from '../components/sections/Ubicacion.astro';
-import Faq from '../components/sections/Faq.astro';
-import CtaFinal from '../components/sections/CtaFinal.astro';
+import LandingPage from '../components/LandingPage.astro';
 ---
 
 <Layout description="Glamping en Dosquebradas, cerca de Pereira. Domos, tina de agua caliente y naturaleza para tu próxima escapada en pareja. Consulta disponibilidad por WhatsApp.">
-  <Header />
-  <Hero />
-  <PromiseSection />
-  <Escapada />
-  <Alojamiento />
-  <Tarifas />
-  <Romance />
-  <Celebraciones />
-  <Actividades />
-  <Naturaleza />
-  <ServicioHabitacion />
-  <Gallery />
-  <Ubicacion />
-  <Faq />
-  <CtaFinal />
-  <Footer />
-  <StickyWhatsappBar client:load />
+  <LandingPage />
 </Layout>

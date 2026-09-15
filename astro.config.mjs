@@ -9,7 +9,12 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://glamping-cumbre-molinos.pages.dev',
-  integrations: [react(), sitemap()],
+  integrations: [
+    react(),
+    sitemap({
+      filter: (page) => new URL(page).pathname !== '/catalogo/',
+    }),
+  ],
 
   vite: {
     plugins: [tailwindcss()]

@@ -1,6 +1,12 @@
 ---
 import { buildWhatsappUrl } from '../lib/whatsapp';
 
+interface Props {
+  showCta?: boolean;
+}
+
+const { showCta = true } = Astro.props;
+
 const links = [
   { href: '#experiencia', label: 'Experiencia' },
   { href: '#celebraciones', label: 'Celebraciones' },
@@ -31,7 +37,7 @@ const links = [
       ))}
     </nav>
 
-    <a
+    {showCta && <a
       href={buildWhatsappUrl('hero')}
       target="_blank"
       rel="noopener noreferrer"
@@ -40,7 +46,7 @@ const links = [
       class="hidden items-center gap-2 rounded-full bg-gold-500 px-4 py-2 text-sm font-semibold text-forest-950 transition-[transform,background-color] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-gold-400 active:scale-[0.97] md:inline-flex"
     >
       Consultar disponibilidad
-    </a>
+    </a>}
 
     <button
       type="button"
@@ -70,7 +76,7 @@ const links = [
           {link.label}
         </a>
       ))}
-      <a
+      {showCta && <a
         href={buildWhatsappUrl('hero')}
         target="_blank"
         rel="noopener noreferrer"
@@ -79,7 +85,7 @@ const links = [
         class="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-4 py-3 text-sm font-semibold text-forest-950 transition-transform duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97]"
       >
         Consultar disponibilidad
-      </a>
+      </a>}
     </div>
   </div>
 </header>

@@ -6,6 +6,12 @@ import cerdito from '../../assets/images/cerdito-granja-glamping-naturaleza.jpg'
 import iguana from '../../assets/images/iguana-zona-verde-glamping.jpg';
 import lupita from '../../assets/images/lupita-pet-friendly-glamping.jpg';
 import WhatsappButton from '../WhatsappButton.astro';
+
+interface Props {
+  showCta?: boolean;
+}
+
+const { showCta = true } = Astro.props;
 ---
 
 <section id="naturaleza" class="bg-cream-50 px-5 py-20 sm:px-8 lg:px-16 lg:py-28">
@@ -45,13 +51,13 @@ import WhatsappButton from '../WhatsappButton.astro';
             Los caballos son parte de la vereda y también protagonistas de la cabalgata. Puedes
             acercarte a conocerlos durante tu estadía.
           </p>
-          <div class="mt-5">
+          {showCta && <div class="mt-5">
             <WhatsappButton
               section="nature"
               label="Preguntar por los caballos y la naturaleza del lugar"
               size="md"
             />
-          </div>
+          </div>}
         </div>
       </div>
     </div>

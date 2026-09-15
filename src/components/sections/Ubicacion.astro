@@ -2,6 +2,12 @@
 import { site } from '../../config/site';
 import WhatsappButton from '../WhatsappButton.astro';
 
+interface Props {
+  showCta?: boolean;
+}
+
+const { showCta = true } = Astro.props;
+
 const mapEmbedSrc = `https://www.google.com/maps?q=${site.location.latitude},${site.location.longitude}&z=15&output=embed`;
 const locationSentence = `Cumbre de los Molinos está en ${site.location.city}, ${site.location.department} (${site.location.nearby}). Contamos con parqueadero para quienes llegan en carro.`;
 ---
@@ -21,7 +27,7 @@ const locationSentence = `Cumbre de los Molinos está en ${site.location.city}, 
         </p>
 
         <div class="mt-7 flex flex-wrap gap-3">
-          <WhatsappButton section="location" label="Confirmar cómo llegar" />
+          {showCta && <WhatsappButton section="location" label="Confirmar cómo llegar" />}
           <a
             href={site.location.mapUrl}
             target="_blank"

@@ -1,0 +1,44 @@
+---
+import Header from './Header.astro';
+import Hero from './Hero.astro';
+import StickyWhatsappBar from './StickyWhatsappBar';
+import Footer from './Footer.astro';
+import PromiseSection from './sections/PromiseSection.astro';
+import Escapada from './sections/Escapada.astro';
+import Alojamiento from './sections/Alojamiento.astro';
+import Tarifas from './sections/Tarifas.astro';
+import Romance from './sections/Romance.astro';
+import Celebraciones from './sections/Celebraciones.astro';
+import Actividades from './sections/Actividades.astro';
+import Naturaleza from './sections/Naturaleza.astro';
+import ServicioHabitacion from './sections/ServicioHabitacion.astro';
+import Gallery from './sections/Gallery.astro';
+import Ubicacion from './sections/Ubicacion.astro';
+import Faq from './sections/Faq.astro';
+import CtaFinal from './sections/CtaFinal.astro';
+
+interface Props {
+  mode?: 'default' | 'catalog';
+}
+
+const { mode = 'default' } = Astro.props;
+const showCta = mode === 'default';
+---
+
+<Header showCta={showCta} />
+<Hero showCta={showCta} />
+<PromiseSection showCta={showCta} />
+<Escapada showCta={showCta} />
+<Alojamiento showCta={showCta} />
+<Tarifas showCta={showCta} />
+<Romance showCta={showCta} />
+<Celebraciones showCta={showCta} />
+<Actividades showCta={showCta} />
+<Naturaleza showCta={showCta} />
+<ServicioHabitacion showCta={showCta} />
+<Gallery showCta={showCta} />
+<Ubicacion showCta={showCta} />
+<Faq showCta={showCta} />
+{showCta && <CtaFinal />}
+<Footer showCta={showCta} />
+{showCta && <StickyWhatsappBar client:load />}

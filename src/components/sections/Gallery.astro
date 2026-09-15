@@ -3,6 +3,14 @@ import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import Gallery, { type GalleryImage } from './Gallery';
 import WhatsappButton from '../WhatsappButton.astro';
+import { buildWhatsappUrl } from '../../lib/whatsapp';
+
+interface Props {
+  showCta?: boolean;
+}
+
+const { showCta = true } = Astro.props;
+const contactUrl = showCta ? buildWhatsappUrl('gallery') : undefined;
 
 import atardecer from '../../assets/images/atardecer-domo-azul-piscina.jpg';
 import piscina from '../../assets/images/piscina-natural-vista-verde-glamping.jpg';
@@ -79,11 +87,11 @@ const images: GalleryImage[] = await Promise.all(
     </div>
 
     <div class="mt-9" data-reveal data-reveal-delay="1">
-      <Gallery client:visible images={images} mobileVisibleCount={MOBILE_VISIBLE_COUNT} />
+      <Gallery client:visible images={images} mobileVisibleCount={MOBILE_VISIBLE_COUNT} contactUrl={contactUrl} />
     </div>
 
-    <div class="mt-9 flex justify-center" data-reveal data-reveal-delay="2">
+    {showCta && <div class="mt-9 flex justify-center" data-reveal data-reveal-delay="2">
       <WhatsappButton section="gallery" label="Ver la galería y consultar disponibilidad" />
-    </div>
+    </div>}
   </div>
 </section>

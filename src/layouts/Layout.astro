@@ -8,6 +8,7 @@ interface Props {
   /** Absolute or root-relative path to a 1200x630 social share image. */
   ogImage?: string;
   path?: string;
+  robots?: string;
 }
 
 const {
@@ -15,6 +16,7 @@ const {
   description,
   ogImage = '/og-image.jpg',
   path = '/',
+  robots = 'index, follow',
 } = Astro.props;
 
 const canonicalUrl = new URL(path, site.siteUrl).toString();
@@ -61,7 +63,7 @@ const schema = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={robots} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />

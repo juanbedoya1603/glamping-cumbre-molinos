@@ -2,6 +2,12 @@
 import { site } from '../../config/site';
 import WhatsappButton from '../WhatsappButton.astro';
 
+interface Props {
+  showCta?: boolean;
+}
+
+const { showCta = true } = Astro.props;
+
 /**
  * `schema: true` marks a question with a genuine, confirmed answer — those
  * are the only ones emitted into the FAQPage JSON-LD below. Questions that
@@ -151,9 +157,9 @@ const schema = {
       ))}
     </div>
 
-    <div class="mt-9 flex justify-center" data-reveal data-reveal-delay="2">
+    {showCta && <div class="mt-9 flex justify-center" data-reveal data-reveal-delay="2">
       <WhatsappButton section="faq" label="Tengo otra pregunta, escribir por WhatsApp" />
-    </div>
+    </div>}
   </div>
 </section>
 

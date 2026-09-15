@@ -5,6 +5,12 @@ import decoracionCumpleanos from '../../assets/images/decoracion-cumpleanos-cama
 import decoracionTeAmo from '../../assets/images/decoracion-te-amo-cama-globos.jpg';
 import WhatsappButton from '../WhatsappButton.astro';
 
+interface Props {
+  showCta?: boolean;
+}
+
+const { showCta = true } = Astro.props;
+
 const categorias = ['Cumpleaños', 'Aniversarios', 'Sorpresas románticas'];
 ---
 
@@ -65,9 +71,9 @@ const categorias = ['Cumpleaños', 'Aniversarios', 'Sorpresas románticas'];
         </div>
       </div>
 
-      <div class="mt-7">
+      {showCta && <div class="mt-7">
         <WhatsappButton section="celebration" label="Preparar una sorpresa" />
-      </div>
+      </div>}
     </div>
   </div>
 </section>

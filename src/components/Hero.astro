@@ -3,6 +3,12 @@ import { getImage } from 'astro:assets';
 import posterSrc from '../assets/images/piscina-natural-vista-verde-glamping.jpg';
 import WhatsappButton from './WhatsappButton.astro';
 
+interface Props {
+  showCta?: boolean;
+}
+
+const { showCta = true } = Astro.props;
+
 const poster = await getImage({ src: posterSrc, format: 'webp', width: 1080, quality: 80 });
 ---
 
@@ -38,9 +44,9 @@ const poster = await getImage({ src: posterSrc, format: 'webp', width: 1080, qua
       <p class="mt-4 font-sans text-base text-cream-100/90 sm:text-lg">
         Domos · Tina de agua caliente · Naturaleza · Experiencias
       </p>
-      <div class="mt-7">
+      {showCta && <div class="mt-7">
         <WhatsappButton section="hero" label="Consultar disponibilidad" size="lg" />
-      </div>
+      </div>}
     </div>
   </div>
 

@@ -1,5 +1,11 @@
 ---
 import { site } from '../config/site';
+
+interface Props {
+  showCta?: boolean;
+}
+
+const { showCta = true } = Astro.props;
 ---
 
 <footer class="bg-forest-950 px-5 py-12 text-cream-100 sm:px-8">
@@ -12,14 +18,14 @@ import { site } from '../config/site';
       </p>
     </div>
 
-    <a
+    {showCta && <a
       href={`https://wa.me/${site.whatsapp.number}`}
       target="_blank"
       rel="noopener noreferrer"
       class="font-sans text-sm text-gold-400 transition-colors hover:text-gold-300"
     >
       {site.whatsapp.displayNumber}
-    </a>
+    </a>}
 
     <div class="flex flex-wrap items-center justify-center gap-3 pt-1" aria-label="Redes sociales">
       {site.social.facebook && (

@@ -1,6 +1,12 @@
 ---
 import WhatsappButton from '../WhatsappButton.astro';
 
+interface Props {
+  showCta?: boolean;
+}
+
+const { showCta = true } = Astro.props;
+
 const alojamientos = [
   {
     nombre: 'Cabaña',
@@ -137,8 +143,8 @@ const extras = [
     </div>
 
     <div class="mt-8" data-reveal data-reveal-delay="3">
-      <WhatsappButton section="rates" label="Consultar disponibilidad" />
-      <p class="mt-4 max-w-2xl font-sans text-xs leading-relaxed text-ink-700/75">
+      {showCta && <WhatsappButton section="rates" label="Consultar disponibilidad" />}
+      <p class:list={[showCta && 'mt-4', 'max-w-2xl font-sans text-xs leading-relaxed text-ink-700/75']}>
         *Tarifas por pareja. Los precios pueden variar según temporada, festivos, fechas especiales y disponibilidad.
       </p>
     </div>

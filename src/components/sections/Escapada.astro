@@ -3,6 +3,12 @@ import { Image } from 'astro:assets';
 import habitacionDomo from '../../assets/images/habitacion-domo-vista-montanas-cama.jpg';
 import interiorDomo from '../../assets/images/interior-domo-vista-montanas-globos.jpg';
 import WhatsappButton from '../WhatsappButton.astro';
+
+interface Props {
+  showCta?: boolean;
+}
+
+const { showCta = true } = Astro.props;
 ---
 
 <section id="experiencia" class="bg-forest-950 px-5 py-20 sm:px-8 lg:px-16 lg:py-28">
@@ -18,9 +24,9 @@ import WhatsappButton from '../WhatsappButton.astro';
         Un domo para ustedes dos, con vista abierta a las montañas de Dosquebradas. Una noche
         pensada para desconectarse del ruido y quedarse con lo que importa: tiempo juntos.
       </p>
-      <div class="mt-8">
+      {showCta && <div class="mt-8">
         <WhatsappButton section="accommodation" label="Reservar mi escapada" />
-      </div>
+      </div>}
     </div>
 
     <div class="lg:col-span-7">
