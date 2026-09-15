@@ -27,9 +27,8 @@ export const site = {
     displayNumber: '+57 321 872 7000',
   },
   social: {
-    /** Fill in once the official account exists. */
-    instagram: null as string | null,
-    facebook: null as string | null,
+    instagram: 'https://www.instagram.com/glampinglacumbredelosmolinos/',
+    facebook: 'https://www.facebook.com/glampingcumbredelosmolinos',
   },
   /** Registro Nacional de Turismo — only render when confirmed. */
   rnt: null as string | null,
